@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Responsive meta tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Legal Buddy | Your Personal Legal Referral Assistant</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        integrity="sha512-p+1Ph+bY6Rf1J7hB9ccJ+6O2rN/B7XcxMTf8w5M2h0dH0FnZ3av+HrdE+2o7HuItBOZQ9zZlJ0YcHWL2aZ0DgQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* ============================================================
+       Global & Theme Settings
+    ============================================================ */
+    :root {
+      --primary-bg: #121212;
+      --secondary-bg: #1e1e1e;
+      --gradient-header: linear-gradient(135deg, #1f1c2c, #928dab);
+      --accent-color: #c0392b;
+      --text-color: #e0e0e0;
+      --light-bg: #222222;
+      --container-bg: #1e1e1e;
+      --transition-speed: 0.3s;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: var(--accent-color);
+    }
+    h1, h2, h3 {
+      margin: 0 0 1rem 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 1rem;
+    }
+    
+    /* ============================================================
+       Navigation Section
+    ============================================================ */
+    nav {
+      background: var(--gradient-header);
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--text-color);
+      letter-spacing: 1px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color var(--transition-speed) ease;
+    }
+    nav ul li a:hover {
+      color: var(--accent-color);
+    }
+    
+    /* ============================================================
+       Hero Section
+    ============================================================ */
+    .hero {
+      background: var(--gradient-header);
+      min-height: 600px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .hero-content {
+      position: relative;
+      text-align: center;
+      z-index: 1;
+      padding: 0 1rem;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+    .cta-btn {
+      background-color: var(--accent-color);
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    }
+    .cta-btn:hover {
+      background-color: darkred;
+      transform: scale(1.05);
+    }
+    
+    /* ============================================================
+       Static Sections (About, How It Works, Our Expertise, Disclaimer, Contact, Footer)
+    ============================================================ */
+    .section {
+      padding: 4rem 0;
+      background-color: var(--container-bg);
+      border-top: 1px solid #333;
+    }
+    .section:nth-of-type(even) {
+      background-color: var(--primary-bg);
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--accent-color);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    /* Updated About Section Copy */
+    #about p {
+      text-align: center;
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    .disclaimer {
+      background-color: var(--secondary-bg);
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+      border-top: 1px solid #333;
+    }
+    .disclaimer p {
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.5;
+    }
+    #contact p a {
+      color: var(--accent-color);
+    }
+    footer {
+      background-color: var(--secondary-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 1.5rem 0;
+      border-top: 1px solid #333;
+    }
+    footer p {
+      margin: 0.5rem 0;
+    }
+    
+    /* ============================================================
+       Conversational Chat Interface
+    ============================================================ */
+    #chatContainer {
+      background-color: var(--container-bg);
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 1rem;
+      max-width: 600px;
+      margin: 2rem auto;
+      height: 400px;
+      overflow-y: auto;
+      transition: opacity 1s ease;
+    }
+    .chat-bubble {
+      margin: 1rem 0;
+      padding: 0.8rem 1rem;
+      border-radius: 16px;
+      max-width: 80%;
+    }
+    .chat-bot {
+      background-color: var(--light-bg);
+      align-self: flex-start;
+    }
+    .chat-user {
+      background-color: var(--accent-color);
+      color: #fff;
+      align-self: flex-end;
+    }
+    #chatInputContainer {
+      max-width: 600px;
+      margin: 1rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    #chatInput {
+      padding: 0.8rem;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background-color: #2a2a2a;
+      color: var(--text-color);
+      font-size: 1rem;
+      display: none;
+    }
+    /* Quick Options for Dropdown Answers */
+    #quickOptions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .quick-option {
+      padding: 0.6rem 1rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color var(--transition-speed) ease;
+      font-size: 0.9rem;
+    }
+    .quick-option:hover {
+      background-color: darkred;
+    }
+    #chatSendBtn {
+      padding: 0.8rem 1.5rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    }
+    #chatSendBtn:hover {
+      background-color: darkred;
+      transform: scale(1.03);
+    }
+    
+    /* ============================================================
+       Responsive Adjustments
+    ============================================================ */
+    @media (max-width: 768px) {
+      nav .container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      #chatContainer, #chatInputContainer {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ============================================================
+       Navigation Section
+  ============================================================ -->
+  <nav>
+    <div class="container">
+      <div class="logo">Legal Buddy</div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#expertise">Our Expertise</a></li>
+        <li><a href="#chatSection">Let's Chat</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- ============================================================
+       Hero Section
+  ============================================================ -->
+  <header id="hero" class="hero">
+    <div class="hero-content container">
+      <h1>Your Trusted Legal Referral Partner</h1>
+      <p>We’re here to help you share your story and get connected with the right legal support.</p>
+      <a href="#chatSection" class="cta-btn"><i class="fa-solid fa-phone fa-lg"></i> Let's Chat</a>
+    </div>
+  </header>
+  
+  <!-- ============================================================
+       About Section (Revised Copy)
+  ============================================================ -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About Legal Buddy</h2>
+      <p>
+        At Legal Buddy, we believe that getting the right legal help should feel personal and stress-free. Our friendly, conversational approach allows you to share your story quickly, and we then connect you with legal professionals who truly care. Your journey toward the support you need starts here.
+      </p>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       How It Works Section
+  ============================================================ -->
+  <section id="how-it-works" class="section">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <i class="fa-solid fa-edit"></i>
+          <h3>Answer a Few Questions</h3>
+          <p>We’ll chat with you to understand your situation in a friendly, easy way.</p>
+        </div>
+        <div class="step">
+          <i class="fa-solid fa-lock"></i>
+          <h3>Secure Matching</h3>
+          <p>Your responses are kept confidential and help us match you with the right legal expert.</p>
+        </div>
+        <div class="step">
+          <i class="fa-solid fa-phone"></i>
+          <h3>Get Contacted</h3>
+          <p>A Legal Buddy representative will reach out to you with personalized referral details.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       Our Expertise Section
+  ============================================================ -->
+  <section id="expertise" class="section">
+    <div class="container">
+      <h2>Our Expertise</h2>
+      <div class="expertise">
+        <div class="expertise-item">
+          <i class="fa-solid fa-user-injured"></i>
+          <h3>Personal Injury</h3>
+        </div>
+        <div class="expertise-item">
+          <i class="fa-solid fa-box-open"></i>
+          <h3>Product Liability</h3>
+        </div>
+        <div class="expertise-item">
+          <i class="fa-solid fa-stethoscope"></i>
+          <h3>Medical Malpractice</h3>
+        </div>
+        <div class="expertise-item">
+          <i class="fa-solid fa-briefcase"></i>
+          <h3>Employment Law</h3>
+        </div>
+        <div class="expertise-item">
+          <i class="fa-solid fa-car-crash"></i>
+          <h3>Accident Claims</h3>
+        </div>
+        <div class="expertise-item">
+          <i class="fa-solid fa-file-contract"></i>
+          <h3>Contract Disputes</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       Conversational Chat Interface for Legal Intake
+  ============================================================ -->
+  <section id="chatSection" class="section">
+    <div class="container">
+      <h2>Let's Chat</h2>
+      <div id="chatContainer"></div>
+      <div id="chatInputContainer">
+        <div id="quickOptions"></div>
+        <input type="text" id="chatInput" placeholder="Type your answer here..." />
+        <button id="chatSendBtn">Send</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       Disclaimer Section
+  ============================================================ -->
+  <section id="disclaimer" class="disclaimer">
+    <div class="container">
+      <p>
+        <strong>Disclaimer:</strong> The information provided on this website is for general informational purposes only and does not constitute legal advice. No attorney-client relationship is formed by using this site or submitting your information. Legal Buddy is a referral service and does not guarantee that any legal professional will contact you or represent you in your case. No outcome is guaranteed.
+      </p>
+      <p>
+        By submitting your information, you consent to be contacted via phone, email, SMS, and other available means—including auto-dialers and robo-calls. You may withdraw your consent at any time.
+      </p>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       Contact Section
+  ============================================================ -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>
+        For questions or further assistance, please email us at 
+        <a href="mailto:info@legalbuddyreferral.com">info@legalbuddyreferral.com</a>.
+      </p>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       Footer Section
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Legal Buddy. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- ============================================================
+       JavaScript for Conversational Chat Interface & Smart Logic
+  ============================================================ -->
+  <script>
+    // Define the conversation questions in a friendly, step-by-step flow.
+    const questions = [
+      // Basic info and case type
+      { id: 'name', text: "Hi, I'm Legal Buddy. What's your name?", type: 'text' },
+      { id: 'practiceArea', text: "Nice to meet you, {name}! What type of legal matter are you dealing with today?", type: 'dropdown', options: ["Personal Injury", "Product Liability", "Medical Malpractice", "Employment Law", "Contract Disputes", "Other"] },
+      { id: 'alreadyRepresented', text: "Are you currently represented by another attorney for this matter?", type: 'dropdown', options: ["Yes", "No"] },
+      
+      // Case-specific questions
+      { id: 'incidentDate', text: "When did this happen? (Please provide a date or approximate date)", type: 'text' },
+      { id: 'incidentLocation', text: "Where did the incident take place?", type: 'text' },
+      { id: 'isOngoing', text: "Is this matter still ongoing?", type: 'dropdown', options: ["Yes", "No"] },
+      { id: 'caseDetails', text: "Could you please tell me more about what happened? Feel free to add any additional details.", type: 'text' },
+      
+      // Contact information (gathered after case details)
+      { id: 'phone', text: "Great, now may I have your phone number?", type: 'text' },
+      { id: 'email', text: "What's your email address?", type: 'text' },
+      { id: 'address', text: "Could you share your mailing address?", type: 'text' },
+      { id: 'birthday', text: "What's your date of birth? (MM/DD/YYYY)", type: 'text' },
+      
+      // Consent for contact
+      { id: 'contactConsent', text: "Lastly, do you agree to be contacted via phone, email, SMS, and other available means (including auto-dialers and robo-calls)?", type: 'dropdown', options: ["I AGREE", "I do not agree"] },
+      
+      // Final message
+      { id: 'finalMessage', text: "Thank you for sharing your information, {name}! We’ll review your details and get in touch with you soon.", type: 'final' }
+    ];
+    
+    let currentQuestionIndex = 0;
+    const responses = {};
+    const chatContainer = document.getElementById('chatContainer');
+    const chatInput = document.getElementById('chatInput');
+    const chatSendBtn = document.getElementById('chatSendBtn');
+    const quickOptionsContainer = document.getElementById('quickOptions');
+    
+    // Function to add a chat bubble
+    function addChatBubble(message, sender = 'bot') {
+      const bubble = document.createElement('div');
+      bubble.classList.add('chat-bubble', sender === 'bot' ? 'chat-bot' : 'chat-user');
+      bubble.textContent = message;
+      chatContainer.appendChild(bubble);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+    
+    // Function to render quick-answer buttons for dropdown questions
+    function renderQuickOptions(options) {
+      quickOptionsContainer.innerHTML = '';
+      options.forEach(option => {
+        const btn = document.createElement('button');
+        btn.textContent = option;
+        btn.classList.add('quick-option');
+        btn.onclick = () => {
+          addChatBubble(option, 'user');
+          responses[questions[currentQuestionIndex].id] = option;
+          currentQuestionIndex++;
+          quickOptionsContainer.innerHTML = '';
+          setTimeout(displayNextQuestion, 600);
+        };
+        quickOptionsContainer.appendChild(btn);
+      });
+    }
+    
+    // Function to close the chat container with a fade-out effect
+    function closeChat() {
+      chatContainer.style.transition = "opacity 1s ease";
+      chatContainer.style.opacity = "0";
+    }
+    
+    // Function to display the next question (with conditional logic)
+    function displayNextQuestion() {
+      if (currentQuestionIndex < questions.length) {
+        const questionObj = questions[currentQuestionIndex];
+        // Skip question if conditional and not met
+        if (questionObj.condition && !questionObj.condition(responses)) {
+          currentQuestionIndex++;
+          displayNextQuestion();
+          return;
+        }
+        let questionText = questionObj.text;
+        if (responses.name) {
+          questionText = questionText.replace("{name}", responses.name);
+        }
+        addChatBubble(questionText, 'bot');
+        if (questionObj.type === 'dropdown') {
+          chatInput.style.display = 'none';
+          renderQuickOptions(questionObj.options);
+        } else if (questionObj.type === 'final') {
+          chatInput.style.display = 'none';
+          quickOptionsContainer.innerHTML = '';
+          // Display final message and then close chat after a delay
+          setTimeout(() => {
+            closeChat();
+          }, 3000);
+        } else {
+          chatInput.style.display = 'block';
+          chatInput.value = "";
+          chatInput.placeholder = "Type your answer here...";
+          quickOptionsContainer.innerHTML = '';
+        }
+      } else {
+        // If no further questions, display final message and close chat
+        addChatBubble("Thank you for your responses. We are processing your details and will be in touch soon.", "bot");
+        setTimeout(closeChat, 3000);
+        console.log("Final responses:", responses);
+        // Here you can implement API submission if needed.
+      }
+    }
+    
+    // Event listener for sending text answers
+    chatSendBtn.addEventListener('click', () => {
+      const currentQuestion = questions[currentQuestionIndex];
+      if (currentQuestion.type !== 'text') return;
+      let answer = chatInput.value.trim();
+      if (!answer) return;
+      addChatBubble(answer, 'user');
+      responses[currentQuestion.id] = answer;
+      currentQuestionIndex++;
+      setTimeout(displayNextQuestion, 600);
+    });
+    
+    // Allow Enter key to submit text answers
+    chatInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        chatSendBtn.click();
+      }
+    });
+    
+    // Start the conversation on page load
+    window.onload = () => {
+      displayNextQuestion();
+    };
+  </script>
+</body>
+</html>
