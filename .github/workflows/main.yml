@@ -1,0 +1,31 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Optional: Install dependencies if you need to build your site.
+      # If your site is completely static and does not require a build step,
+      # you can remove this step.
+      #- name: Install Dependencies
+      #  run: npm install
+
+      # Optional: Build your site if needed.
+      #- name: Build Site
+      #  run: npm run build
+
+      # Deploy the content of the repository to the gh-pages branch.
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
