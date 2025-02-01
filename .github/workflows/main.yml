@@ -15,7 +15,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2.0'  # Use a supported Ruby version
+          ruby-version: '3.2.0'  # Using a concrete version that's supported
 
       - name: Install Dependencies
         run: |
