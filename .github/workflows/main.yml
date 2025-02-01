@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy Jekyll Site
 
 on:
   push:
@@ -9,23 +9,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Optional: Install dependencies if you need to build your site.
-      # If your site is completely static and does not require a build step,
-      # you can remove this step.
-      #- name: Install Dependencies
-      #  run: npm install
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
 
-      # Optional: Build your site if needed.
-      #- name: Build Site
-      #  run: npm run build
+      - name: Install Dependencies
+        run: |
+          gem install bundler
+          bundle install
 
-      # Deploy the content of the repository to the gh-pages branch.
+      - name: Build Site with Jekyll
+        run: bundle exec jekyll build
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./_site
