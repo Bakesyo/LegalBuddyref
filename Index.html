@@ -820,31 +820,6 @@
       }
     }
     
-    // Event listener for sending text answers
-    chatSendBtn.addEventListener('click', () => {
-      const currentQuestion = questions[currentQuestionIndex];
-      if (currentQuestion.type !== 'text') return;
-      let answer = chatInput.value.trim();
-      if (!answer) return;
-      addChatBubble(answer, 'user');
-      responses[currentQuestion.id] = answer;
-      currentQuestionIndex++;
-      setTimeout(displayNextQuestion, 600);
-    });
-    
-    // Allow Enter key to submit text answers
-    chatInput.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        chatSendBtn.click();
-      }
-    });
-    
-    // Start the conversation on page load
-    window.onload = () => {
-      displayNextQuestion();
-    };
-
     // Enhanced validation functions
     const validators = {
       phone: (value) => {
@@ -926,13 +901,13 @@
     document.body.insertAdjacentHTML('afterbegin', '<div class="chat-progress"></div>');
     
     // Restore saved responses if any
-    window.onload = () => {
+    window.addEventListener('load', () => {
       const savedResponses = localStorage.getItem('chatResponses');
       if (savedResponses) {
         Object.assign(responses, JSON.parse(savedResponses));
       }
       displayNextQuestion();
-    };
+    });
 
     // Modify the chat submission logic
     async function submitResponses(responses) {
