@@ -639,8 +639,8 @@
     </div>
   </section>
   
-  <!-- Add hidden Netlify form -->
-  <form name="lawsuit-buddy-intake" netlify netlify-honeypot="bot-field" hidden action="/success">
+  <!-- Update hidden Netlify form with method="POST" -->
+  <form name="lawsuit-buddy-intake" method="POST" netlify netlify-honeypot="bot-field" hidden action="/success">
     <input type="text" name="bot-field">
     <input type="text" name="name" />
     <input type="text" name="practice_area" />
@@ -909,7 +909,7 @@
       displayNextQuestion();
     });
 
-    // Modify the chat submission logic
+    // Modify the chat submission logic: Remove the explicit Content-Type header so the browser sets it correctly.
     async function submitResponses(responses) {
       try {
         const formData = new FormData();
@@ -922,10 +922,9 @@
           formData.append(key, responses[key]);
         });
 
-        // Submit the form using Netlify's form submission API
+        // Submit the form without manually setting headers
         const response = await fetch('/', {
           method: 'POST',
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: new URLSearchParams(formData).toString()
         });
         
