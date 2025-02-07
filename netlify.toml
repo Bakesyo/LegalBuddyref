@@ -1,19 +1,19 @@
 [build]
-  command = "npm install && npm run build"
-  publish = "dist"
-
-[[plugins]]
-  package = "netlify-plugin-formspree"
+  publish = "/"
+  command = ""
 
 [[headers]]
   for = "/*"
   [headers.values]
     Content-Security-Policy = "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;"
     X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "interest-cohort=()"
-    X-Content-Type-Options = "nosniff"
+
+[[plugins]]
+  package = "netlify-plugin-formspree"
 
 [[redirects]]
   from = "/*"

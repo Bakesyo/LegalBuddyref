@@ -1,23 +1,18 @@
 {
   "name": "lawsuit-buddy",
   "version": "1.0.0",
-  "description": "Legal Referral Assistant",
+  "description": "Legal Referral Assistant Website",
   "private": true,
   "type": "module",
   "main": "index.html",
   "scripts": {
-    "dev": "next dev",
-    "build": "mkdir -p dist && cp Index.html dist/index.html && cp -r public/* dist/",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "npx serve",
+    "test": "echo \"No tests specified\""
   },
   "keywords": ["legal", "referral", "assistant"],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "next": "^14.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "netlify-plugin-formspree": "^1.0.1"
+    "serve": "^14.2.1"
   }
 }
