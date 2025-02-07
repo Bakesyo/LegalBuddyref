@@ -7,9 +7,58 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
+            "name": "Launch Chrome",
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "/__vite-root/*": "${webRoot}/*",
+                "webpack:///./~/*": "${webRoot}/node_modules/*",
+                "webpack:////*": "/*",
+                "webpack://?:*/*": "${webRoot}/*"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Netlify Functions",
+            "runtimeExecutable": "netlify",
+            "runtimeArgs": ["dev"],
+            "sourceMaps": true,
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Current Function",
+            "program": "${workspaceFolder}/node_modules/.bin/netlify-lambda",
+            "args": ["serve", "src/functions"],
+            "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Build",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "build"],
+            "sourceMaps": true,
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"],
+            "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+            "postDebugTask": "Serve Build"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Full Stack Debug",
+            "configurations": ["Launch Chrome", "Debug Netlify Functions"]
+        },
+        {
+            "name": "Debug Build Process",
+            "configurations": ["Debug Build"]
         }
     ]
 }

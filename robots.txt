@@ -1,8 +1,7 @@
 User-agent: *
 Allow: /
-Allow: /privacy
-Allow: /news
-Disallow: /success
-Disallow: /404.html
+Disallow: /api/
+Disallow: /.netlify/
+Disallow: /admin/
 
 Sitemap: https://lawsuitbuddy.com/sitemap.xml

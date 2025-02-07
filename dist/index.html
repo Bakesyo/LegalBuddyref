@@ -14,10 +14,6 @@
   <!-- SEO Meta Tags -->
   <meta name="description" content="Lawsuit Buddy connects you with experienced legal professionals. Get help with personal injury, medical malpractice, employment law, and more.">
   <meta name="keywords" content="legal referral, personal injury lawyer, medical malpractice, employment law, legal help">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Lawsuit Buddy">
-  <meta name="theme-color" content="#121212">
-  <link rel="canonical" href="https://lawsuitbuddy.com/">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -77,7 +73,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="manifest" href="data:application/manifest+json;base64,ew0KICAibmFtZSI6ICJMYXdzdWl0IEJ1ZGR5IiwNCiAgInNob3J0X25hbWUiOiAiTGF3c3VpdEJ1ZGR5IiwNCiAgInN0YXJ0X3VybCI6ICIvIiwNCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsDQogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMxMjEyMTIiLA0KICAidGhlbWVfY29sb3IiOiAiI2MwMzkyYiIsDQogICJpY29ucyI6IFsNCiAgICB7DQogICAgICAic3JjIjogIi9mYXZpY29uLTE5MngxOTIucG5nIiwNCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwNCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyINCiAgICB9LA0KICAgIHsNCiAgICAgICJzcmMiOiAiL2Zhdmljb24tNTEyeDUxMi5wbmciLA0KICAgICAgInNpemVzIjogIjUxMng1MTIiLA0KICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIg0KICAgIH0NCiAgXQ0KfQ0K">
   
   <!-- Cache Control -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -90,16 +86,11 @@
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
-  <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
-  <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp">
   
   <!-- Preload Critical Resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="preload" as="image" href="/images/hero-bg.webp" media="(min-width: 768px)">
-  <link rel="preload" as="image" href="/images/hero-bg-mobile.webp" media="(max-width: 767px)">
   
   <style>
     /* ============================================================
@@ -486,44 +477,13 @@
       margin-left: 1rem;
       cursor: pointer;
     }
-
-    /* Enhanced Accessibility Styles */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
-    }
-    
-    /* Focus Styles */
-    a:focus-visible,
-    button:focus-visible {
-      outline: 3px solid var(--accent-color);
-      outline-offset: 2px;
-    }
-    
-    /* Form Validation Styles */
-    .error-message {
-      color: #ff6b6b;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
-    
-    input:invalid,
-    textarea:invalid {
-      border-color: #ff6b6b;
-    }
   </style>
 </head>
 <body>
   <!-- ============================================================
        Navigation Section
   ============================================================ -->
-  <nav aria-label="Main navigation">
+  <nav>
     <div class="container">
       <div class="logo">Lawsuit Buddy</div>
       <ul class="nav-links">
@@ -654,10 +614,6 @@
     <input type="text" name="address" />
     <input type="text" name="birthday" />
     <input type="text" name="contact_consent" />
-    <input type="text" name="state" aria-label="State" required>
-    <input type="text" name="zip_code" aria-label="ZIP Code" pattern="[0-9]{5}" required>
-    <input type="checkbox" name="terms_accepted" required>
-    <label for="terms_accepted">I accept the terms and conditions</label>
     <div data-netlify-recaptcha="true"></div>
   </form>
 
@@ -1028,35 +984,6 @@
       localStorage.setItem('cookieConsent', 'true');
       document.getElementById('cookie-banner').style.display = 'none';
     };
-
-    // Enhanced Form Validation
-    const formValidation = {
-      zip_code: (value) => /^[0-9]{5}$/.test(value),
-      state: (value) => /^[A-Za-z]{2}$/.test(value),
-      terms_accepted: (value) => value === true
-    };
-
-    // Add error handling for form submission
-    async function submitForm(data) {
-      try {
-        const response = await fetch('/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: new URLSearchParams(data).toString()
-        });
-        return response.ok;
-      } catch (error) {
-        console.error('Form submission error:', error);
-        return false;
-      }
-    }
-
-    // Initialize Service Worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
-    }
   </script>
 
   <div id="cookie-banner">

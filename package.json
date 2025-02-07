@@ -1,0 +1,23 @@
+{
+  "name": "lawsuit-buddy",
+  "version": "1.0.0",
+  "description": "Legal Referral Assistant",
+  "private": true,
+  "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
+  },
+  "keywords": ["legal", "referral", "assistant"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "netlify-plugin-formspree": "^1.0.1"
+  }
+}
