@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /privacy
+Allow: /news
+Disallow: /success
+Disallow: /404.html
+
+Sitemap: https://lawsuitbuddy.com/sitemap.xml

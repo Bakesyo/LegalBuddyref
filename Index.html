@@ -4,13 +4,94 @@
   <meta charset="UTF-8">
   <!-- Responsive meta tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Legal Buddy | Your Personal Legal Referral Assistant</title>
+  <title>Lawsuit Buddy | Your Personal Legal Referral Assistant</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
         integrity="sha512-p+1Ph+bY6Rf1J7hB9ccJ+6O2rN/B7XcxMTf8w5M2h0dH0FnZ3av+HrdE+2o7HuItBOZQ9zZlJ0YcHWL2aZ0DgQ==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Lawsuit Buddy connects you with experienced legal professionals. Get help with personal injury, medical malpractice, employment law, and more.">
+  <meta name="keywords" content="legal referral, personal injury lawyer, medical malpractice, employment law, legal help">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lawsuitbuddy.com/">
+  <meta property="og:title" content="Lawsuit Buddy | Your Personal Legal Referral Assistant">
+  <meta property="og:description" content="Connect with experienced legal professionals for your case.">
+  <meta property="og:image" content="https://lawsuitbuddy.com/og-image.jpg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://lawsuitbuddy.com/">
+  <meta property="twitter:title" content="Lawsuit Buddy | Your Personal Legal Referral Assistant">
+  <meta property="twitter:description" content="Connect with experienced legal professionals for your case.">
+  <meta property="twitter:image" content="https://lawsuitbuddy.com/og-image.jpg">
+
+  <!-- Event Structured Data for Martiez Refinery in California -->
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Event",
+    "name": "Martiez Refinery Annual Conference",
+    "startDate": "2023-11-25T18:30:00-08:00",
+    "endDate": "2023-11-26T21:00:00-08:00",
+    "location": {
+      "@type": "Place",
+      "name": "Martiez Refinery",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Refinery Rd",
+        "addressLocality": "Some City",
+        "addressRegion": "CA",
+        "postalCode": "90001",
+        "addressCountry": "US"
+      }
+    },
+    "image": [
+      "https://lawsuitbuddy.com/images/martiez-event.jpg"
+    ],
+    "description": "Join the Martiez Refinery Annual Conference to learn about the latest in refining innovations and environmental safety practices.",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://lawsuitbuddy.com/event-registration",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "http://schema.org/InStock",
+      "validFrom": "2023-09-01T12:00:00-08:00"
+    },
+    "performer": {
+      "@type": "PerformingGroup",
+      "name": "Expert Panel of Refining Engineers"
+    }
+  }
+  </script>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <!-- Cache Control -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
   <style>
     /* ============================================================
        Global & Theme Settings
@@ -282,6 +363,120 @@
         max-width: 90%;
       }
     }
+
+    /* Steps Section Styling */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+    }
+    
+    .step {
+      text-align: center;
+      padding: 2rem;
+      background: var(--secondary-bg);
+      border-radius: 8px;
+      transition: transform var(--transition-speed) ease;
+    }
+    
+    .step:hover {
+      transform: translateY(-5px);
+    }
+    
+    .step i {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    
+    .step h3 {
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+    
+    .step p {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    /* Chat Improvements */
+    .typing-indicator {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.5rem 1rem;
+      background: var(--light-bg);
+      border-radius: 16px;
+      width: fit-content;
+      margin: 1rem 0;
+    }
+    
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      animation: typingAnimation 1.4s infinite;
+    }
+    
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    
+    @keyframes typingAnimation {
+      0%, 100% { opacity: 0.4; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-4px); }
+    }
+    
+    .chat-error {
+      color: #ff6b6b;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    
+    .chat-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+    
+    .edit-previous {
+      color: var(--accent-color);
+      font-size: 0.8rem;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    
+    .chat-controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* Cookie Banner */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--secondary-bg);
+      padding: 1rem;
+      text-align: center;
+      z-index: 1000;
+      display: none;
+    }
+    #cookie-accept {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -290,7 +485,7 @@
   ============================================================ -->
   <nav>
     <div class="container">
-      <div class="logo">Legal Buddy</div>
+      <div class="logo">Lawsuit Buddy</div>
       <ul class="nav-links">
         <li><a href="#hero">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -298,6 +493,9 @@
         <li><a href="#expertise">Our Expertise</a></li>
         <li><a href="#chatSection">Let's Chat</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="/news.html">News</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
       </ul>
     </div>
   </nav>
@@ -318,9 +516,9 @@
   ============================================================ -->
   <section id="about" class="section">
     <div class="container">
-      <h2>About Legal Buddy</h2>
+      <h2>About Lawsuit Buddy</h2>
       <p>
-        At Legal Buddy, we believe that getting the right legal help should feel personal and stress-free. Our friendly, conversational approach allows you to share your story quickly, and we then connect you with legal professionals who truly care. Your journey toward the support you need starts here.
+        At Lawsuit Buddy, we believe that getting the right legal help should feel personal and stress-free. Our friendly, conversational approach allows you to share your story quickly, and we then connect you with legal professionals who truly care. Your journey toward the support you need starts here.
       </p>
     </div>
   </section>
@@ -345,7 +543,7 @@
         <div class="step">
           <i class="fa-solid fa-phone"></i>
           <h3>Get Contacted</h3>
-          <p>A Legal Buddy representative will reach out to you with personalized referral details.</p>
+          <p>A Lawsuit Buddy representative will reach out to you with personalized referral details.</p>
         </div>
       </div>
     </div>
@@ -401,13 +599,31 @@
     </div>
   </section>
   
+  <!-- Add hidden Netlify form -->
+  <form name="lawsuit-buddy-intake" netlify netlify-honeypot="bot-field" hidden action="/success" data-netlify-recaptcha="true">
+    <input type="text" name="bot-field">
+    <input type="text" name="name" />
+    <input type="text" name="practice_area" />
+    <input type="text" name="represented" />
+    <input type="text" name="incident_date" />
+    <input type="text" name="incident_location" />
+    <input type="text" name="is_ongoing" />
+    <textarea name="case_details"></textarea>
+    <input type="tel" name="phone" />
+    <input type="email" name="email" />
+    <input type="text" name="address" />
+    <input type="text" name="birthday" />
+    <input type="text" name="contact_consent" />
+    <div data-netlify-recaptcha="true"></div>
+  </form>
+
   <!-- ============================================================
        Disclaimer Section
   ============================================================ -->
   <section id="disclaimer" class="disclaimer">
     <div class="container">
       <p>
-        <strong>Disclaimer:</strong> The information provided on this website is for general informational purposes only and does not constitute legal advice. No attorney-client relationship is formed by using this site or submitting your information. Legal Buddy is a referral service and does not guarantee that any legal professional will contact you or represent you in your case. No outcome is guaranteed.
+        <strong>Disclaimer:</strong> The information provided on this website is for general informational purposes only and does not constitute legal advice. No attorney-client relationship is formed by using this site or submitting your information. Lawsuit Buddy is a referral service and does not guarantee that any legal professional will contact you or represent you in your case. No outcome is guaranteed.
       </p>
       <p>
         By submitting your information, you consent to be contacted via phone, email, SMS, and other available means—including auto-dialers and robo-calls. You may withdraw your consent at any time.
@@ -423,7 +639,7 @@
       <h2>Contact Us</h2>
       <p>
         For questions or further assistance, please email us at 
-        <a href="mailto:info@legalbuddyreferral.com">info@legalbuddyreferral.com</a>.
+        <a href="mailto:info@lawsuitbuddy.com">info@lawsuitbuddy.com</a>.
       </p>
     </div>
   </section>
@@ -433,7 +649,11 @@
   ============================================================ -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 Legal Buddy. All rights reserved.</p>
+      <p>&copy; 2025 Lawsuit Buddy. All rights reserved.</p>
+      <p>
+        <a href="/terms.html">Terms of Service</a> | 
+        <a href="/privacy.html">Privacy Policy</a>
+      </p>
     </div>
   </footer>
   
@@ -444,7 +664,7 @@
     // Define the conversation questions in a friendly, step-by-step flow.
     const questions = [
       // Basic info and case type
-      { id: 'name', text: "Hi, I'm Legal Buddy. What's your name?", type: 'text' },
+      { id: 'name', text: "Hi, I'm Lawsuit Buddy. What's your name?", type: 'text' },
       { id: 'practiceArea', text: "Nice to meet you, {name}! What type of legal matter are you dealing with today?", type: 'dropdown', options: ["Personal Injury", "Product Liability", "Medical Malpractice", "Employment Law", "Contract Disputes", "Other"] },
       { id: 'alreadyRepresented', text: "Are you currently represented by another attorney for this matter?", type: 'dropdown', options: ["Yes", "No"] },
       
@@ -571,6 +791,205 @@
     window.onload = () => {
       displayNextQuestion();
     };
+
+    // Enhanced validation functions
+    const validators = {
+      phone: (value) => {
+        const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        return phoneRegex.test(value) ? null : "Please enter a valid phone number";
+      },
+      email: (value) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(value) ? null : "Please enter a valid email address";
+      },
+      birthday: (value) => {
+        const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
+        return dateRegex.test(value) ? null : "Please enter a valid date (MM/DD/YYYY)";
+      }
+    };
+
+    // Add typing indicator
+    function showTypingIndicator() {
+      const indicator = document.createElement('div');
+      indicator.className = 'typing-indicator';
+      for (let i = 0; i < 3; i++) {
+        indicator.appendChild(document.createElement('div')).className = 'typing-dot';
+      }
+      chatContainer.appendChild(indicator);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+      return indicator;
+    }
+
+    // Update progress bar
+    function updateProgress() {
+      const progress = document.querySelector('.chat-progress');
+      const percentage = (currentQuestionIndex / questions.length) * 100;
+      progress.style.width = `${percentage}%`;
+    }
+
+    // Enhanced displayNextQuestion function
+    function displayNextQuestion() {
+      if (currentQuestionIndex < questions.length) {
+        const questionObj = questions[currentQuestionIndex];
+        const indicator = showTypingIndicator();
+        
+        setTimeout(() => {
+          indicator.remove();
+          let questionText = questionObj.text;
+          if (responses.name) {
+            questionText = questionText.replace("{name}", responses.name);
+          }
+          
+          addChatBubble(questionText, 'bot');
+          
+          if (questionObj.type === 'dropdown') {
+            chatInput.style.display = 'none';
+            renderQuickOptions(questionObj.options);
+          } else {
+            chatInput.style.display = 'block';
+            chatInput.value = "";
+            chatInput.placeholder = getPlaceholder(questionObj.id);
+            quickOptionsContainer.innerHTML = '';
+          }
+          
+          updateProgress();
+          
+          // Add edit previous link
+          if (currentQuestionIndex > 0) {
+            const editLink = document.createElement('div');
+            editLink.className = 'edit-previous';
+            editLink.textContent = 'Edit previous answer';
+            editLink.onclick = () => goBackOneQuestion();
+            quickOptionsContainer.appendChild(editLink);
+          }
+        }, 1500);
+      }
+    }
+
+    // Function to go back one question
+    function goBackOneQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        responses[questions[currentQuestionIndex].id] = null;
+        // Remove last two chat bubbles (question and answer)
+        chatContainer.removeChild(chatContainer.lastChild);
+        chatContainer.removeChild(chatContainer.lastChild);
+        displayNextQuestion();
+      }
+    }
+
+    // Enhanced input validation
+    chatSendBtn.addEventListener('click', () => {
+      const currentQuestion = questions[currentQuestionIndex];
+      if (currentQuestion.type !== 'text') return;
+      
+      let answer = chatInput.value.trim();
+      if (!answer) return;
+      
+      // Validate input if validator exists
+      const validator = validators[currentQuestion.id];
+      if (validator) {
+        const error = validator(answer);
+        if (error) {
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'chat-error';
+          errorDiv.textContent = error;
+          chatContainer.appendChild(errorDiv);
+          return;
+        }
+      }
+      
+      addChatBubble(answer, 'user');
+      responses[currentQuestion.id] = answer;
+      currentQuestionIndex++;
+      setTimeout(displayNextQuestion, 600);
+      
+      // Save responses to localStorage
+      localStorage.setItem('chatResponses', JSON.stringify(responses));
+    });
+    
+    // Initialize progress bar
+    document.body.insertAdjacentHTML('afterbegin', '<div class="chat-progress"></div>');
+    
+    // Restore saved responses if any
+    window.onload = () => {
+      const savedResponses = localStorage.getItem('chatResponses');
+      if (savedResponses) {
+        Object.assign(responses, JSON.parse(savedResponses));
+      }
+      displayNextQuestion();
+    };
+
+    // Modify the chat submission logic
+    async function submitResponses(responses) {
+      try {
+        const formData = new FormData();
+        formData.append('form-name', 'lawsuit-buddy-intake');
+        
+        // Add honeypot field
+        formData.append('bot-field', '');
+        
+        Object.keys(responses).forEach(key => {
+          formData.append(key, responses[key]);
+        });
+        
+        const response = await fetch('/', {
+          method: 'POST',
+          body: formData
+        });
+        
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        
+        // Clear stored responses after successful submission
+        localStorage.removeItem('chatResponses');
+        
+        return true;
+      } catch (error) {
+        console.error('Error:', error);
+        return false;
+      }
+    }
+
+    // Add error handling for failed submissions
+    function handleSubmissionError() {
+        addChatBubble("We're experiencing technical difficulties. Please try again later or contact us directly at info@lawsuitbuddy.com", "bot");
+    }
+
+    // Modify the final question handling
+    function displayNextQuestion() {
+      if (currentQuestionIndex < questions.length) {
+        // ...existing question display code...
+      } else {
+        addChatBubble("Thank you for your responses. We are processing your details and will be in touch soon.", "bot");
+        
+        // Submit the responses
+        submitResponses(responses).then(success => {
+          if (success) {
+            setTimeout(closeChat, 3000);
+          } else {
+            addChatBubble("There was an error submitting your information. Please try again later.", "bot");
+          }
+        });
+      }
+    }
+
+    // Cookie consent logic
+    if (!localStorage.getItem('cookieConsent')) {
+      document.getElementById('cookie-banner').style.display = 'block';
+    }
+    
+    document.getElementById('cookie-accept').onclick = () => {
+      localStorage.setItem('cookieConsent', 'true');
+      document.getElementById('cookie-banner').style.display = 'none';
+    };
   </script>
+
+  <div id="cookie-banner">
+    We use cookies to improve your experience. By using our site, you agree to our 
+    <a href="/privacy.html">privacy policy</a>.
+    <button id="cookie-accept">Accept</button>
+  </div>
 </body>
 </html>
