@@ -640,7 +640,7 @@
   </section>
   
   <!-- Add hidden Netlify form -->
-  <form name="lawsuit-buddy-intake" netlify netlify-honeypot="bot-field" hidden action="/success" data-netlify-recaptcha="true">
+  <form name="lawsuit-buddy-intake" netlify netlify-honeypot="bot-field" hidden action="/success">
     <input type="text" name="bot-field">
     <input type="text" name="name" />
     <input type="text" name="practice_area" />
@@ -658,7 +658,6 @@
     <input type="text" name="zip_code" aria-label="ZIP Code" pattern="[0-9]{5}" required>
     <input type="checkbox" name="terms_accepted" required>
     <label for="terms_accepted">I accept the terms and conditions</label>
-    <div data-netlify-recaptcha="true"></div>
   </form>
 
   <!-- ============================================================
@@ -1065,6 +1064,5 @@
     <a href="/privacy.html">privacy policy</a>.
     <button id="cookie-accept" onclick="acceptCookies()">Accept</button>
   </div>
-  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
 </body>
 </html>

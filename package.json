@@ -7,9 +7,9 @@
   "main": "index.html",
   "scripts": {
     "dev": "next dev",
-    "build": "mkdir -p dist && cp index.html dist/ && cp -r public/* dist/",
+    "build": "mkdir -p dist && cp Index.html dist/index.html && cp -r public/* dist/",
     "start": "next start",
-    "export": "next export"
+    "lint": "next lint"
   },
   "keywords": ["legal", "referral", "assistant"],
   "author": "",
