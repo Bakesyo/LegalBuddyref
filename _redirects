@@ -1,3 +1,15 @@
-/* /index.html 200
-/api/* /.netlify/functions/:splat 200
-/news /news.html 200
+# Redirect domain aliases to primary domain
+https://www.lawsuitbuddy.com/* https://lawsuitbuddy.com/:splat 301!
+
+# Handle clean URLs
+/home    /index.html   200
+/success /success.html 200
+/chat    /index.html   200
+/terms   /terms.html   200
+/privacy /privacy.html 200
+
+# API routes
+/api/*  /.netlify/functions/:splat  200
+
+# SPA fallback
+/*    /index.html   200

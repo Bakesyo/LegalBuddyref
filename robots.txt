@@ -3,5 +3,7 @@ Allow: /
 Disallow: /api/
 Disallow: /.netlify/
 Disallow: /admin/
+Disallow: /404.html
+Disallow: /offline.html
 
 Sitemap: https://lawsuitbuddy.com/sitemap.xml

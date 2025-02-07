@@ -3,30 +3,42 @@
     <!-- Home Page -->
     <url>
         <loc>https://lawsuitbuddy.com/</loc>
-        <lastmod>2023-11-25</lastmod>
-        <changefreq>weekly</changefreq>
+        <lastmod>2024-07-24</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <!-- Privacy Page -->
     <url>
-        <loc>https://lawsuitbuddy.com/privacy</loc>
-        <lastmod>2023-11-25</lastmod>
+        <loc>https://lawsuitbuddy.com/privacy.html</loc>
+        <lastmod>2024-07-24</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
+        <priority>0.7</priority>
     </url>
     <!-- News Page -->
     <url>
-        <loc>https://lawsuitbuddy.com/news</loc>
+        <loc>https://lawsuitbuddy.com/news.html</loc>
         <lastmod>2023-11-25</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- Terms Page -->
     <url>
-        <loc>https://lawsuitbuddy.com/terms</loc>
-        <lastmod>2023-11-25</lastmod>
+        <loc>https://lawsuitbuddy.com/terms.html</loc>
+        <lastmod>2024-07-24</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
+        <priority>0.7</priority>
     </url>
-    <!-- ...other URL entries... -->
+    <!-- Add other static pages here -->
+    <url>
+        <loc>https://lawsuitbuddy.com/404.html</loc>
+        <lastmod>2024-07-24</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://lawsuitbuddy.com/offline.html</loc>
+        <lastmod>2024-07-24</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
 </urlset>

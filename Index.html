@@ -775,39 +775,49 @@
     function displayNextQuestion() {
       if (currentQuestionIndex < questions.length) {
         const questionObj = questions[currentQuestionIndex];
-        // Skip question if conditional and not met
-        if (questionObj.condition && !questionObj.condition(responses)) {
-          currentQuestionIndex++;
-          displayNextQuestion();
-          return;
-        }
-        let questionText = questionObj.text;
-        if (responses.name) {
-          questionText = questionText.replace("{name}", responses.name);
-        }
-        addChatBubble(questionText, 'bot');
-        if (questionObj.type === 'dropdown') {
-          chatInput.style.display = 'none';
-          renderQuickOptions(questionObj.options);
-        } else if (questionObj.type === 'final') {
-          chatInput.style.display = 'none';
-          quickOptionsContainer.innerHTML = '';
-          // Display final message and then close chat after a delay
-          setTimeout(() => {
-            closeChat();
-          }, 3000);
-        } else {
-          chatInput.style.display = 'block';
-          chatInput.value = "";
-          chatInput.placeholder = "Type your answer here...";
-          quickOptionsContainer.innerHTML = '';
-        }
+        const indicator = showTypingIndicator();
+        
+        setTimeout(() => {
+          indicator.remove();
+          let questionText = questionObj.text;
+          if (responses.name) {
+            questionText = questionText.replace("{name}", responses.name);
+          }
+          
+          addChatBubble(questionText, 'bot');
+          
+          if (questionObj.type === 'dropdown') {
+            chatInput.style.display = 'none';
+            renderQuickOptions(questionObj.options);
+          } else {
+            chatInput.style.display = 'block';
+            chatInput.value = "";
+            chatInput.placeholder = getPlaceholder(questionObj.id);
+            quickOptionsContainer.innerHTML = '';
+          }
+          
+          updateProgress();
+          
+          // Add edit previous link
+          if (currentQuestionIndex > 0) {
+            const editLink = document.createElement('div');
+            editLink.className = 'edit-previous';
+            editLink.textContent = 'Edit previous answer';
+            editLink.onclick = () => goBackOneQuestion();
+            quickOptionsContainer.appendChild(editLink);
+          }
+        }, 1500);
       } else {
-        // If no further questions, display final message and close chat
         addChatBubble("Thank you for your responses. We are processing your details and will be in touch soon.", "bot");
-        setTimeout(closeChat, 3000);
-        console.log("Final responses:", responses);
-        // Here you can implement API submission if needed.
+        
+        // Submit the responses
+        submitResponses(responses).then(success => {
+          if (success) {
+            setTimeout(closeChat, 3000);
+          } else {
+            handleSubmissionError();
+          }
+        });
       }
     }
     
@@ -869,45 +879,6 @@
       const progress = document.querySelector('.chat-progress');
       const percentage = (currentQuestionIndex / questions.length) * 100;
       progress.style.width = `${percentage}%`;
-    }
-
-    // Enhanced displayNextQuestion function
-    function displayNextQuestion() {
-      if (currentQuestionIndex < questions.length) {
-        const questionObj = questions[currentQuestionIndex];
-        const indicator = showTypingIndicator();
-        
-        setTimeout(() => {
-          indicator.remove();
-          let questionText = questionObj.text;
-          if (responses.name) {
-            questionText = questionText.replace("{name}", responses.name);
-          }
-          
-          addChatBubble(questionText, 'bot');
-          
-          if (questionObj.type === 'dropdown') {
-            chatInput.style.display = 'none';
-            renderQuickOptions(questionObj.options);
-          } else {
-            chatInput.style.display = 'block';
-            chatInput.value = "";
-            chatInput.placeholder = getPlaceholder(questionObj.id);
-            quickOptionsContainer.innerHTML = '';
-          }
-          
-          updateProgress();
-          
-          // Add edit previous link
-          if (currentQuestionIndex > 0) {
-            const editLink = document.createElement('div');
-            editLink.className = 'edit-previous';
-            editLink.textContent = 'Edit previous answer';
-            editLink.onclick = () => goBackOneQuestion();
-            quickOptionsContainer.appendChild(editLink);
-          }
-        }, 1500);
-      }
     }
 
     // Function to go back one question
@@ -976,10 +947,12 @@
         Object.keys(responses).forEach(key => {
           formData.append(key, responses[key]);
         });
-        
+
+        // Submit the form using Netlify's form submission API
         const response = await fetch('/', {
           method: 'POST',
-          body: formData
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString()
         });
         
         if (!response.ok) {
@@ -1001,33 +974,46 @@
         addChatBubble("We're experiencing technical difficulties. Please try again later or contact us directly at info@lawsuitbuddy.com", "bot");
     }
 
-    // Modify the final question handling
-    function displayNextQuestion() {
-      if (currentQuestionIndex < questions.length) {
-        // ...existing question display code...
-      } else {
-        addChatBubble("Thank you for your responses. We are processing your details and will be in touch soon.", "bot");
-        
-        // Submit the responses
-        submitResponses(responses).then(success => {
-          if (success) {
-            setTimeout(closeChat, 3000);
-          } else {
-            addChatBubble("There was an error submitting your information. Please try again later.", "bot");
-          }
-        });
-      }
+    // Cookie consent logic
+    function showCookieBanner() {
+      const banner = document.getElementById('cookie-banner');
+      banner.style.display = 'block';
     }
 
-    // Cookie consent logic
-    if (!localStorage.getItem('cookieConsent')) {
-      document.getElementById('cookie-banner').style.display = 'block';
+    function hideCookieBanner() {
+      const banner = document.getElementById('cookie-banner');
+      banner.style.display = 'none';
     }
-    
-    document.getElementById('cookie-accept').onclick = () => {
-      localStorage.setItem('cookieConsent', 'true');
-      document.getElementById('cookie-banner').style.display = 'none';
-    };
+
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    function acceptCookies() {
+      setCookie('cookieConsent', 'true', 365);
+      hideCookieBanner();
+    }
+
+    if (!getCookie('cookieConsent')) {
+      showCookieBanner();
+    }
 
     // Enhanced Form Validation
     const formValidation = {
@@ -1057,12 +1043,28 @@
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js');
     }
+
+    function getPlaceholder(questionId) {
+      switch (questionId) {
+        case 'phone':
+          return 'Enter your 10-digit phone number';
+        case 'email':
+          return 'Enter your email address';
+        case 'address':
+          return 'Enter your street address, city, and state';
+        case 'birthday':
+          return 'MM/DD/YYYY';
+        default:
+          return 'Type your answer here...';
+      }
+    }
   </script>
 
   <div id="cookie-banner">
     We use cookies to improve your experience. By using our site, you agree to our 
     <a href="/privacy.html">privacy policy</a>.
-    <button id="cookie-accept">Accept</button>
+    <button id="cookie-accept" onclick="acceptCookies()">Accept</button>
   </div>
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
 </body>
 </html>
