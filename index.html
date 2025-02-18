@@ -85,7 +85,7 @@
   <meta http-equiv="Expires" content="0">
   
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://interfaces.zapier.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
@@ -246,7 +246,6 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    /* Updated About Section Copy */
     #about p {
       text-align: center;
       max-width: 800px;
@@ -282,98 +281,8 @@
     }
     
     /* ============================================================
-       Conversational Chat Interface
+       Steps Section Styling
     ============================================================ */
-    #chatContainer {
-      background-color: var(--container-bg);
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 1rem;
-      max-width: 600px;
-      margin: 2rem auto;
-      height: 400px;
-      overflow-y: auto;
-      transition: opacity 1s ease;
-    }
-    .chat-bubble {
-      margin: 1rem 0;
-      padding: 0.8rem 1rem;
-      border-radius: 16px;
-      max-width: 80%;
-    }
-    .chat-bot {
-      background-color: var(--light-bg);
-      align-self: flex-start;
-    }
-    .chat-user {
-      background-color: var(--accent-color);
-      color: #fff;
-      align-self: flex-end;
-    }
-    #chatInputContainer {
-      max-width: 600px;
-      margin: 1rem auto;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    #chatInput {
-      padding: 0.8rem;
-      border: 1px solid #555;
-      border-radius: 4px;
-      background-color: #2a2a2a;
-      color: var(--text-color);
-      font-size: 1rem;
-      display: none;
-    }
-    /* Quick Options for Dropdown Answers */
-    #quickOptions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .quick-option {
-      padding: 0.6rem 1rem;
-      background-color: var(--accent-color);
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color var(--transition-speed) ease;
-      font-size: 0.9rem;
-    }
-    .quick-option:hover {
-      background-color: darkred;
-    }
-    #chatSendBtn {
-      padding: 0.8rem 1.5rem;
-      background-color: var(--accent-color);
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
-    }
-    #chatSendBtn:hover {
-      background-color: darkred;
-      transform: scale(1.03);
-    }
-    
-    /* ============================================================
-       Responsive Adjustments
-    ============================================================ */
-    @media (max-width: 768px) {
-      nav .container {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      #chatContainer, #chatInputContainer {
-        max-width: 90%;
-      }
-    }
-
-    /* Steps Section Styling */
     .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -408,64 +317,10 @@
       color: #aaa;
       font-size: 0.9rem;
     }
-
-    /* Chat Improvements */
-    .typing-indicator {
-      display: flex;
-      gap: 0.3rem;
-      padding: 0.5rem 1rem;
-      background: var(--light-bg);
-      border-radius: 16px;
-      width: fit-content;
-      margin: 1rem 0;
-    }
     
-    .typing-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--accent-color);
-      border-radius: 50%;
-      animation: typingAnimation 1.4s infinite;
-    }
-    
-    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-    
-    @keyframes typingAnimation {
-      0%, 100% { opacity: 0.4; transform: translateY(0); }
-      50% { opacity: 1; transform: translateY(-4px); }
-    }
-    
-    .chat-error {
-      color: #ff6b6b;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
-    
-    .chat-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: var(--accent-color);
-      transition: width 0.3s ease;
-    }
-    
-    .edit-previous {
-      color: var(--accent-color);
-      font-size: 0.8rem;
-      text-decoration: underline;
-      cursor: pointer;
-      margin-top: 0.5rem;
-    }
-    
-    .chat-controls {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    /* Cookie Banner */
+    /* ============================================================
+       Cookie Banner
+    ============================================================ */
     #cookie-banner {
       position: fixed;
       bottom: 0;
@@ -512,11 +367,6 @@
       font-size: 0.9rem;
       margin-top: 0.5rem;
     }
-    
-    input:invalid,
-    textarea:invalid {
-      border-color: #ff6b6b;
-    }
   </style>
 </head>
 <body>
@@ -531,7 +381,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#expertise">Our Expertise</a></li>
-        <li><a href="#chatSection">Let's Chat</a></li>
+        <li><a href="#chatSection">Chat</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="/news.html">News</a></li>
         <li><a href="/terms.html">Terms</a></li>
@@ -552,7 +402,7 @@
   </header>
   
   <!-- ============================================================
-       About Section (Revised Copy)
+       About Section
   ============================================================ -->
   <section id="about" class="section">
     <div class="container">
@@ -625,52 +475,19 @@
   </section>
   
   <!-- ============================================================
-       Conversational Chat Interface for Legal Intake
+       Chat Section with Zapier Chatbot
   ============================================================ -->
   <section id="chatSection" class="section">
-    <div class="container">
-      <h2>Let's Chat</h2>
-      <div id="chatContainer"></div>
-      <div id="chatInputContainer">
-        <div id="quickOptions"></div>
-        <input type="text" id="chatInput" placeholder="Type your answer here..." />
-        <button id="chatSendBtn">Send</button>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Update hidden Netlify form with method="POST" -->
-  <form name="lawsuit-buddy-intake" method="POST" netlify netlify-honeypot="bot-field" hidden action="/success">
-    <input type="text" name="bot-field">
-    <input type="text" name="name" />
-    <input type="text" name="practice_area" />
-    <input type="text" name="represented" />
-    <input type="text" name="incident_date" />
-    <input type="text" name="incident_location" />
-    <input type="text" name="is_ongoing" />
-    <textarea name="case_details"></textarea>
-    <input type="tel" name="phone" />
-    <input type="email" name="email" />
-    <input type="text" name="address" />
-    <input type="text" name="birthday" />
-    <input type="text" name="contact_consent" />
-    <input type="text" name="state" aria-label="State" required>
-    <input type="text" name="zip_code" aria-label="ZIP Code" pattern="[0-9]{5}" required>
-    <input type="checkbox" name="terms_accepted" required>
-    <label for="terms_accepted">I accept the terms and conditions</label>
-  </form>
-
-  <!-- ============================================================
-      <p>
-        <strong>Disclaimer:</strong> The information provided on this website is for general informational purposes only and does not constitute legal advice. No attorney-client relationship is formed by using this site or submitting your information. Lawsuit Buddy is a referral service and does not guarantee that any legal professional will contact you or represent you in your case. No outcome is guaranteed.
-      </p>
-      <p>
-        By submitting your information, you consent to be contacted via phone, email, SMS, and other available means—including auto-dialers and robo-calls. You may withdraw your consent at any time.
-      </p>
-    </div>
-  </section>
-  
-  <!-- ============================================================
+    <div class="container" style="text-align: center;">
+      <h2>Chat With Us</h2>
+      <!-- Zapier Chatbot Script & Embed -->
+      <script async type="module" src="https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js"></script>
+      <zapier-interfaces-chatbot-embed 
+        is-popup="false" 
+        chatbot-id="cm7a2s77h003h11tbg95e3ze4" 
+        height="600px" 
+        width="400px">
+      </zapier-interfaces-chatbot-embed>
     </div>
   </section>
   
@@ -700,264 +517,42 @@
     </div>
   </footer>
   
-  <!-- ============================================================
-       JavaScript for Conversational Chat Interface & Smart Logic
-  ============================================================ -->
+  <!-- Hidden Netlify Form -->
+  <form name="lawsuit-buddy-intake" method="POST" netlify netlify-honeypot="bot-field" hidden action="/success">
+    <input type="text" name="bot-field">
+    <input type="text" name="name" />
+    <input type="text" name="practice_area" />
+    <input type="text" name="represented" />
+    <input type="text" name="incident_date" />
+    <input type="text" name="incident_location" />
+    <input type="text" name="is_ongoing" />
+    <textarea name="case_details"></textarea>
+    <input type="tel" name="phone" />
+    <input type="email" name="email" />
+    <input type="text" name="address" />
+    <input type="text" name="birthday" />
+    <input type="text" name="contact_consent" />
+    <input type="text" name="state" aria-label="State" required>
+    <input type="text" name="zip_code" aria-label="ZIP Code" pattern="[0-9]{5}" required>
+    <input type="checkbox" name="terms_accepted" required>
+    <label for="terms_accepted">I accept the terms and conditions</label>
+  </form>
+  
+  <!-- Cookie Banner -->
+  <div id="cookie-banner">
+    We use cookies to improve your experience. By using our site, you agree to our 
+    <a href="/privacy.html">privacy policy</a>.
+    <button id="cookie-accept" onclick="acceptCookies()">Accept</button>
+  </div>
+  
+  <!-- Cookie Consent Script -->
   <script>
-    // Define the conversation questions in a friendly, step-by-step flow.
-    const questions = [
-      // Basic info and case type
-      { id: 'name', text: "Hi, I'm Lawsuit Buddy. What's your name?", type: 'text' },
-      { id: 'practiceArea', text: "Nice to meet you, {name}! What type of legal matter are you dealing with today?", type: 'dropdown', options: ["Personal Injury", "Product Liability", "Medical Malpractice", "Employment Law", "Contract Disputes", "Other"] },
-      { id: 'alreadyRepresented', text: "Are you currently represented by another attorney for this matter?", type: 'dropdown', options: ["Yes", "No"] },
-      
-      // Case-specific questions
-      { id: 'incidentDate', text: "When did this happen? (Please provide a date or approximate date)", type: 'text' },
-      { id: 'incidentLocation', text: "Where did the incident take place?", type: 'text' },
-      { id: 'isOngoing', text: "Is this matter still ongoing?", type: 'dropdown', options: ["Yes", "No"] },
-      { id: 'caseDetails', text: "Could you please tell me more about what happened? Feel free to add any additional details.", type: 'text' },
-      
-      // Contact information (gathered after case details)
-      { id: 'phone', text: "Great, now may I have your phone number?", type: 'text' },
-      { id: 'email', text: "What's your email address?", type: 'text' },
-      { id: 'address', text: "Could you share your mailing address?", type: 'text' },
-      { id: 'birthday', text: "What's your date of birth? (MM/DD/YYYY)", type: 'text' },
-      
-      // Consent for contact
-      { id: 'contactConsent', text: "Lastly, do you agree to be contacted via phone, email, SMS, and other available means (including auto-dialers and robo-calls)?", type: 'dropdown', options: ["I AGREE", "I do not agree"] },
-      
-      // Final message
-      { id: 'finalMessage', text: "Thank you for sharing your information, {name}! We’ll review your details and get in touch with you soon.", type: 'final' }
-    ];
-    
-    let currentQuestionIndex = 0;
-    const responses = {};
-    const chatContainer = document.getElementById('chatContainer');
-    const chatInput = document.getElementById('chatInput');
-    const chatSendBtn = document.getElementById('chatSendBtn');
-    const quickOptionsContainer = document.getElementById('quickOptions');
-    
-    // Function to add a chat bubble
-    function addChatBubble(message, sender = 'bot') {
-      const bubble = document.createElement('div');
-      bubble.classList.add('chat-bubble', sender === 'bot' ? 'chat-bot' : 'chat-user');
-      bubble.textContent = message;
-      chatContainer.appendChild(bubble);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-    
-    // Function to render quick-answer buttons for dropdown questions
-    function renderQuickOptions(options) {
-      quickOptionsContainer.innerHTML = '';
-      options.forEach(option => {
-        const btn = document.createElement('button');
-        btn.textContent = option;
-        btn.classList.add('quick-option');
-        btn.onclick = () => {
-          addChatBubble(option, 'user');
-          responses[questions[currentQuestionIndex].id] = option;
-          currentQuestionIndex++;
-          quickOptionsContainer.innerHTML = '';
-          setTimeout(displayNextQuestion, 600);
-        };
-        quickOptionsContainer.appendChild(btn);
-      });
-    }
-    
-    // Function to close the chat container with a fade-out effect
-    function closeChat() {
-      chatContainer.style.transition = "opacity 1s ease";
-      chatContainer.style.opacity = "0";
-    }
-    
-    // Function to display the next question (with conditional logic)
-    function displayNextQuestion() {
-      if (currentQuestionIndex < questions.length) {
-        const questionObj = questions[currentQuestionIndex];
-        const indicator = showTypingIndicator();
-        
-        setTimeout(() => {
-          indicator.remove();
-          let questionText = questionObj.text;
-          if (responses.name) {
-            questionText = questionText.replace("{name}", responses.name);
-          }
-          
-          addChatBubble(questionText, 'bot');
-          
-          if (questionObj.type === 'dropdown') {
-            chatInput.style.display = 'none';
-            renderQuickOptions(questionObj.options);
-          } else {
-            chatInput.style.display = 'block';
-            chatInput.value = "";
-            chatInput.placeholder = getPlaceholder(questionObj.id);
-            quickOptionsContainer.innerHTML = '';
-          }
-          
-          updateProgress();
-          
-          // Add edit previous link
-          if (currentQuestionIndex > 0) {
-            const editLink = document.createElement('div');
-            editLink.className = 'edit-previous';
-            editLink.textContent = 'Edit previous answer';
-            editLink.onclick = () => goBackOneQuestion();
-            quickOptionsContainer.appendChild(editLink);
-          }
-        }, 1500);
-      } else {
-        addChatBubble("Thank you for your responses. We are processing your details and will be in touch soon.", "bot");
-        
-        // Submit the responses
-        submitResponses(responses).then(success => {
-          if (success) {
-            setTimeout(closeChat, 3000);
-          } else {
-            handleSubmissionError();
-          }
-        });
-      }
-    }
-    
-    // Enhanced validation functions
-    const validators = {
-      phone: (value) => {
-        const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-        return phoneRegex.test(value) ? null : "Please enter a valid phone number";
-      },
-      email: (value) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(value) ? null : "Please enter a valid email address";
-      },
-      birthday: (value) => {
-        const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
-        return dateRegex.test(value) ? null : "Please enter a valid date (MM/DD/YYYY)";
-      }
-    };
-
-    // Add typing indicator
-    function showTypingIndicator() {
-      const indicator = document.createElement('div');
-      indicator.className = 'typing-indicator';
-      for (let i = 0; i < 3; i++) {
-        indicator.appendChild(document.createElement('div')).className = 'typing-dot';
-      }
-      chatContainer.appendChild(indicator);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-      return indicator;
-    }
-
-    // Update progress bar
-    function updateProgress() {
-      const progress = document.querySelector('.chat-progress');
-      const percentage = (currentQuestionIndex / questions.length) * 100;
-      progress.style.width = `${percentage}%`;
-    }
-
-    // Function to go back one question
-    function goBackOneQuestion() {
-      if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        responses[questions[currentQuestionIndex].id] = null;
-        // Remove last two chat bubbles (question and answer)
-        chatContainer.removeChild(chatContainer.lastChild);
-        chatContainer.removeChild(chatContainer.lastChild);
-        displayNextQuestion();
-      }
-    }
-
-    // Enhanced input validation
-    chatSendBtn.addEventListener('click', () => {
-      const currentQuestion = questions[currentQuestionIndex];
-      if (currentQuestion.type !== 'text') return;
-      
-      let answer = chatInput.value.trim();
-      if (!answer) return;
-      
-      // Validate input if validator exists
-      const validator = validators[currentQuestion.id];
-      if (validator) {
-        const error = validator(answer);
-        if (error) {
-          const errorDiv = document.createElement('div');
-          errorDiv.className = 'chat-error';
-          errorDiv.textContent = error;
-          chatContainer.appendChild(errorDiv);
-          return;
-        }
-      }
-      
-      addChatBubble(answer, 'user');
-      responses[currentQuestion.id] = answer;
-      currentQuestionIndex++;
-      setTimeout(displayNextQuestion, 600);
-      
-      // Save responses to localStorage
-      localStorage.setItem('chatResponses', JSON.stringify(responses));
-    });
-    
-    // Initialize progress bar
-    document.body.insertAdjacentHTML('afterbegin', '<div class="chat-progress"></div>');
-    
-    // Restore saved responses if any
-    window.addEventListener('load', () => {
-      const savedResponses = localStorage.getItem('chatResponses');
-      if (savedResponses) {
-        Object.assign(responses, JSON.parse(savedResponses));
-      }
-      displayNextQuestion();
-    });
-
-    // Modify the chat submission logic: Remove the explicit Content-Type header so the browser sets it correctly.
-    async function submitResponses(responses) {
-      try {
-        const formData = new FormData();
-        formData.append('form-name', 'lawsuit-buddy-intake');
-        
-        // Add honeypot field
-        formData.append('bot-field', '');
-        
-        Object.keys(responses).forEach(key => {
-          formData.append(key, responses[key]);
-        });
-
-        // Submit the form without manually setting headers
-        const response = await fetch('/', {
-          method: 'POST',
-          body: new URLSearchParams(formData).toString()
-        });
-        
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        
-        // Clear stored responses after successful submission
-        localStorage.removeItem('chatResponses');
-        
-        return true;
-      } catch (error) {
-        console.error('Error:', error);
-        return false;
-      }
-    }
-
-    // Add error handling for failed submissions
-    function handleSubmissionError() {
-        addChatBubble("We're experiencing technical difficulties. Please try again later or contact us directly at info@lawsuitbuddy.com", "bot");
-    }
-
-    // Cookie consent logic
     function showCookieBanner() {
-      const banner = document.getElementById('cookie-banner');
-      banner.style.display = 'block';
+      document.getElementById('cookie-banner').style.display = 'block';
     }
-
     function hideCookieBanner() {
-      const banner = document.getElementById('cookie-banner');
-      banner.style.display = 'none';
+      document.getElementById('cookie-banner').style.display = 'none';
     }
-
     function setCookie(name, value, days) {
       let expires = "";
       if (days) {
@@ -967,7 +562,6 @@
       }
       document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
-
     function getCookie(name) {
       const nameEQ = name + "=";
       const ca = document.cookie.split(';');
@@ -978,65 +572,20 @@
       }
       return null;
     }
-
     function acceptCookies() {
       setCookie('cookieConsent', 'true', 365);
       hideCookieBanner();
     }
-
     if (!getCookie('cookieConsent')) {
       showCookieBanner();
     }
-
-    // Enhanced Form Validation
-    const formValidation = {
-      zip_code: (value) => /^[0-9]{5}$/.test(value),
-      state: (value) => /^[A-Za-z]{2}$/.test(value),
-      terms_accepted: (value) => value === true
-    };
-
-    // Add error handling for form submission
-    async function submitForm(data) {
-      try {
-        const response = await fetch('/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: new URLSearchParams(data).toString()
-        });
-        return response.ok;
-      } catch (error) {
-        console.error('Form submission error:', error);
-        return false;
-      }
-    }
-
-    // Initialize Service Worker
+  </script>
+  
+  <!-- Service Worker Registration -->
+  <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js');
     }
-
-    function getPlaceholder(questionId) {
-      switch (questionId) {
-        case 'phone':
-          return 'Enter your 10-digit phone number';
-        case 'email':
-          return 'Enter your email address';
-        case 'address':
-          return 'Enter your street address, city, and state';
-        case 'birthday':
-          return 'MM/DD/YYYY';
-        default:
-          return 'Type your answer here...';
-      }
-    }
   </script>
-
-  <div id="cookie-banner">
-    We use cookies to improve your experience. By using our site, you agree to our 
-    <a href="/privacy.html">privacy policy</a>.
-    <button id="cookie-accept" onclick="acceptCookies()">Accept</button>
-  </div>
 </body>
 </html>
